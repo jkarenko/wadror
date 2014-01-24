@@ -54,3 +54,5 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'awesome_print', :group => :development
+
+gem 'byebug', group: [:development, :test]
