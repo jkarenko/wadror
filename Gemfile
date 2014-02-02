@@ -56,3 +56,5 @@ end
 gem 'awesome_print', :group => :development
 
 gem 'byebug', group: [:development, :test]
+
+gem 'bcrypt-ruby', '~> 3.1.2'
