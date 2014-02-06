@@ -33,4 +33,18 @@ describe User do
       expect(user.average_rating).to eq(15.0)
     end
   end
+
+  it "is not saved with too short a password" do
+    user = User.create username:"Pekka", password:"poop", password_confirmation:"poop"
+
+    expect(user).to be_invalid
+    expect(User.count).to eq(0)
+  end
+
+  it "is not saved with a password without numbers" do
+    user = User.create username:"Pekka", password:"PooP", password_confirmation:"PooP"
+
+    expect(user).to be_invalid
+    expect(User.count).to eq(0)
+  end
 end
