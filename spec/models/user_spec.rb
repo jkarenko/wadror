@@ -34,17 +34,19 @@ describe User do
     end
   end
 
-  it "is not saved with too short a password" do
-    user = User.create username:"Pekka", password:"poop", password_confirmation:"poop"
+  describe "with an improper password" do
+    user = User.create username:"Pekka", password:"poo", password_confirmation:"poo"
 
-    expect(user).to be_invalid
-    expect(User.count).to eq(0)
-  end
+    it "is not saved when password too short" do
+      expect(user).to be_invalid
+      expect(User.count).to eq(0)
+    end
 
-  it "is not saved with a password without numbers" do
     user = User.create username:"Pekka", password:"PooP", password_confirmation:"PooP"
 
-    expect(user).to be_invalid
-    expect(User.count).to eq(0)
+    it "is not saved when password doesn't contain a number" do
+      expect(user).to be_invalid
+      expect(User.count).to eq(0)
+    end
   end
 end
