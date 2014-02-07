@@ -15,7 +15,7 @@ describe User do
   end
 
   describe "with a proper password" do
-    let(:user){ User.create username:"Pekka", password:"Secret1", password_confirmation:"Secret1" }
+    let(:user){ FactoryGirl.create(:user) }
 
     it "is saved" do
       expect(user).to be_valid
@@ -23,8 +23,8 @@ describe User do
     end
   
     it "and with two ratings, has the correct average rating" do
-      rating = Rating.new score:10
-      rating2 = Rating.new score:20
+      rating = FactoryGirl.create(:rating)
+      rating2 = FactoryGirl.create(:rating2)
 
       user.ratings << rating
       user.ratings << rating2
@@ -47,6 +47,44 @@ describe User do
     it "is not saved when password doesn't contain a number" do
       expect(user).to be_invalid
       expect(User.count).to eq(0)
+    end
+  end
+
+  describe "favorite beer" do
+    let(:user){FactoryGirl.create(:user) }
+
+    it "has method for determining one" do
+      user.should respond_to :favorite_beer
+    end
+
+    it "without ratings does not have one" do
+      expect(user.favorite_beer).to eq(nil)
+    end
+
+    it "is the only rated if only one rating" do
+      beer = FactoryGirl.create(:beer)
+      rating = FactoryGirl.create(:rating, beer:beer, user:user)
+
+      expect(user.favorite_beer).to eq(beer)
+    end
+
+    it "is the one with highest rating if several rated" do
+      create_beers_with_ratings(10, 5, 20, 8, user)
+      best = create_beer_with_rating(25, user)
+
+      expect(user.favorite_beer).to eq(best)
+    end
+  end
+
+  def create_beer_with_rating(score, user)
+    beer = FactoryGirl.create(:beer)
+    FactoryGirl.create(:rating, score:score, beer:beer, user:user)
+    beer
+  end
+
+  def create_beers_with_ratings(*scores, user)
+    scores.each do |score|
+      create_beer_with_rating(score, user)
     end
   end
 end
