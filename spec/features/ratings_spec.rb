@@ -47,6 +47,22 @@ describe "Rating" do
     visit user_path(user)
     expect(page).to have_content "#{beer2.name} #{rating.score}"
     expect(page).to have_no_content "#{beer1.name} #{rating2.score}"
-
   end
+
+  it "is removed from database after user deletes it from their profile" do
+    rating = FactoryGirl.create :rating
+    beer2.ratings << rating
+    user.ratings << rating
+
+    rating2 = FactoryGirl.create :rating
+    beer1.ratings << rating2
+    user.ratings << rating2
+
+    visit user_path(user)
+    first('li').click_link('delete')
+
+    expect(user.ratings.count).to eq(1)
+  end
+
+
 end
