@@ -24,4 +24,12 @@ describe "Rating" do
     expect(beer1.ratings.count).to eq(1)
     expect(beer1.average_rating).to eq(15.0)
   end
+
+  it "after creation is displayed on the ratings page" do
+    rating = FactoryGirl.create :rating
+    beer2.ratings << rating
+    user.ratings << rating
+    visit ratings_path
+    save_and_open_page
+  end
 end
