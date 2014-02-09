@@ -6,6 +6,7 @@ describe "Rating" do
   let!(:beer1) { FactoryGirl.create :beer, name:"iso 3", brewery:brewery }
   let!(:beer2) { FactoryGirl.create :beer, name:"Karhu", brewery:brewery }
   let!(:user) { FactoryGirl.create :user }
+  let!(:user2) { FactoryGirl.create :user, username:"Kalle", password:"Foobar1", password_confirmation:"Foobar1" }
 
   before :each do
     sign_in(username:"Pekka", password:"Foobar1")
@@ -29,7 +30,23 @@ describe "Rating" do
     rating = FactoryGirl.create :rating
     beer2.ratings << rating
     user.ratings << rating
+
     visit ratings_path
-    save_and_open_page
+    expect(page).to have_content "#{beer2.name} #{rating.score} #{user.username}"
+  end
+
+  it "after creation is displayed on the user's page, no other users' ratings are displayed" do
+    rating = FactoryGirl.create :rating
+    beer2.ratings << rating
+    user.ratings << rating
+
+    rating2 = FactoryGirl.create :rating2
+    beer1.ratings << rating2
+    user2.ratings << rating2
+
+    visit user_path(user)
+    expect(page).to have_content "#{beer2.name} #{rating.score}"
+    expect(page).to have_no_content "#{beer1.name} #{rating2.score}"
+
   end
 end
