@@ -1,3 +1,0 @@
-== Brewy Bear
-
-http://hidden-retreat-4912.herokuapp.com/breweries
