@@ -1,10 +1,16 @@
 language: ruby
-
 rvm:
- - 2.0.0
-
+- 2.0.0
 script:
- - bundle exec rake db:migrate --trace
- - RAILS_ENV=test bundle exec rake db:migrate --trace
- - bundle exec rake db:test:prepare
- - bundle exec rspec -fd spec/
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -fd spec/
+deploy:
+  provider: heroku
+  api_key:
+    secure: iU5ejT/leeFui9CYUGe1AheM3tThWhK6oPIK/9L/IHu2wk7vMZ87g2MKUXA5T256d/3E4D49zj8rV2rU27Nx9NwT1X3myFqqOfpgsM02LlmNfa/V3BcbyHcf1tQABFMDb4cfnH1IYmwfffs5kn+w5auMgWQUdL9gXd7J8sQW6ak=
+  run: "rake db:migrate"
+  app: hidden-retreat-4912
+  on:
+    repo: jkarenko/wadror
