@@ -305,21 +305,28 @@
       "/home/wadror/ratebeer/lib/beermapping_api.rb": [
         1,
         1,
-        3,
+        6,
+        10,
+        null,
+        null,
+        1,
+        null,
+        1,
+        4,
+        null,
+        4,
+        4,
+        null,
+        4,
         null,
         3,
         3,
-        null,
-        3,
-        null,
-        2,
-        2,
-        8,
+        9,
         null,
         null,
         null,
         1,
-        3,
+        4,
         null,
         null
       ],
@@ -335,6 +342,6 @@
         null
       ]
     },
-    "timestamp": 1392411720
+    "timestamp": 1392416607
   }
 }

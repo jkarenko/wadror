@@ -70,3 +70,5 @@ group :test do
 end
 
 gem 'httparty'
+
+gem 'rails-settings-cached', '0.3.1'
