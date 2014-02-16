@@ -13,7 +13,7 @@ describe Beer do
   end
 
   it "is not saved when beer has no name defined" do
-    beer = Beer.create style:"beer"
+    beer = Beer.create
 
     expect(beer).to be_invalid
     expect(Beer.count).to eq(0)

@@ -18,14 +18,16 @@ FactoryGirl.define do
     year 1900
   end
 
-  factory :beer do
-    name "anonymous"
-    brewery
-    style "Lager"
-  end
-
   factory :style do
     style "lager"
     description "yellow liquid"
   end
+
+  factory :beer do
+    name "anonymous"
+    brewery
+    style
+  end
+
+  
 end
