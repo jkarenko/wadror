@@ -1,0 +1,19 @@
+<h1>Beer styles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Style</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @styles.each do |style| %>
+      <tr>
+        <td><%= link_to style, style_path(style) %></td>
+        <td><%= style.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

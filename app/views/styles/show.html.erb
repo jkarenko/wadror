@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+<h1><%= @style %></h1>
+
+<p>
+  <strong>Description:</strong>
+  <%= @style.description %>
+</p>
+
+<p>
+  <% if @beers.empty? %>
+   no beers of this style stored yet
+  <% else %>
+   Found <%= pluralize(@beers.count, "beer") %> of this style
+  <% end %>
+</p>
+
+<p>
+  <% @beers.each do |beer| %>
+  <li>
+    <%= beer %>
+  </li>
+  <% end %>
+</p>
+

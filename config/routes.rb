@@ -7,6 +7,8 @@ Ratebeer::Application.routes.draw do
 
   resources :places, only:[:index, :show]
 
+  resources :styles, only:[:index, :show]
+
   root 'breweries#index'
 
   get 'signup', to: 'users#new'
