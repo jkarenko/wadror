@@ -16,11 +16,11 @@
 
   <div class="field">
   <%= f.label :beer %><br>
-    <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s) %>
+    <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s, selected: @rating.beer_id) %>
   </div>
   <div class="field">
     <%= f.label :score %><br>
-    <%= f.text_field :score %>
+    score: <%= f.text_field :score %>
   </div>
 
   <%= f.submit %>
