@@ -7,6 +7,7 @@ describe "Rating" do
   let!(:beer2) { FactoryGirl.create :beer, name:"Karhu", brewery:brewery }
   let!(:user) { FactoryGirl.create :user }
   let!(:user2) { FactoryGirl.create :user, username:"Kalle", password:"Foobar1", password_confirmation:"Foobar1" }
+  let!(:style) { FactoryGirl.create :style }
 
   before :each do
     sign_in(username:"Pekka", password:"Foobar1")

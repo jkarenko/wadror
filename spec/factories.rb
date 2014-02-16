@@ -23,4 +23,9 @@ FactoryGirl.define do
     brewery
     style "Lager"
   end
+
+  factory :style do
+    style "lager"
+    description "yellow liquid"
+  end
 end

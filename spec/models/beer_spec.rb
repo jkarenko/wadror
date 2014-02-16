@@ -1,8 +1,12 @@
 require 'spec_helper'
 
 describe Beer do
+  before :each do
+    FactoryGirl.create :style 
+  end
+
   it "is saved when beer has name and style" do
-    beer = Beer.create name:"foo", style:"beer"
+    beer = Beer.create name:"foo", style_id: 1
 
     expect(beer).to be_valid
     expect(Beer.count).to eq(1)

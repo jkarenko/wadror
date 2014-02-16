@@ -5,7 +5,8 @@ include OwnTestHelper
 describe "Beer" do
   before :each do
     FactoryGirl.create :user
-    FactoryGirl.create(:brewery, name: 'lolbrewery', year: 2000)   
+    FactoryGirl.create(:brewery, name: 'lolbrewery', year: 2000)  
+    FactoryGirl.create :style 
   end
 
   it "is created when it gets a valid name" do
